@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <LangVersion>12</LangVersion>
+    <NeutralLanguage>en-US</NeutralLanguage>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Extensibility.Sdk" Version="17.14.40608" />
+    <PackageReference Include="Microsoft.VisualStudio.Extensibility.Build" Version="17.14.40608" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Logo_90x90.png" />
+    <None Remove="Resources\Screenshot.png" />
+    <Content Include="Resources\Logo_90x90.png" />
+    <Content Include="Resources\Screenshot.png" />
+    <EmbeddedResource Include="Windows\EFCoreViewerUserControl.xaml" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Include="..\..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Update="Resources\EFCoreViewerStrings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>EFCoreViewerStrings.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\EFCoreViewerStrings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>EFCoreViewerStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+	<ItemGroup>
+		<Content Include="..\IQueryableObjectSource\bin\$(Configuration)\net8.0-windows8.0\IQueryableObjectSource.dll" Link="netcoreapp\IQueryableObjectSource.dll" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\IQueryableObjectSource\IQueryableObjectSource.csproj" />
+	</ItemGroup>
+</Project>

@@ -1,0 +1,14 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/src/bin
+/src/obj
+*.user
+/test/bin
+/test/obj
+/src/EFCoreViewer/bin/Debug/net8.0-windows8.0
+/src/EFCoreViewer/obj
+/src/IQueryableObjectSource/bin/Debug/net8.0-windows8.0
+/src/IQueryableObjectSource/obj

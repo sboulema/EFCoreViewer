@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/EFCoreViewer/EFCoreViewer.csproj" />
+    <Project Path="src/IQueryableObjectSource/IQueryableObjectSource.csproj" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/EFCoreViewer.Test.csproj" />
+  </Folder>
+</Solution>
