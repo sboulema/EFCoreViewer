@@ -11,11 +11,11 @@ namespace IQueryableObjectSource;
 
 public static class SqlExtensions
 {
-    private static object Private(this object obj, string privateField)
+    private static object? Private(this object obj, string privateField)
         => obj?.GetType().GetField(privateField, BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(obj);
 
-    private static T Private<T>(this object obj, string privateField)
-        => (T)obj?.GetType().GetField(privateField, BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(obj);
+    private static T? Private<T>(this object obj, string privateField)
+        => (T?)obj?.GetType().GetField(privateField, BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(obj);
 
     /// <summary>
     /// Gets a SQL statement from an IQueryable
@@ -26,10 +26,33 @@ public static class SqlExtensions
     {
         var enumerator = query.Provider.Execute<IEnumerable>(query.Expression).GetEnumerator();
         var relationalCommandCache = enumerator.Private("_relationalCommandCache");
+
+        if (relationalCommandCache == null)
+        {
+            return string.Empty;
+        }
+
         var selectExpression = relationalCommandCache.Private<SelectExpression>("_selectExpression");
         var factory = relationalCommandCache.Private<IQuerySqlGeneratorFactory>("_querySqlGeneratorFactory");
+
+        if (factory == null)
+        {
+            return string.Empty;
+        }
+
         var relationalQueryContext = enumerator.Private<RelationalQueryContext>("_relationalQueryContext");
+
+        if (relationalQueryContext == null)
+        {
+            return string.Empty;
+        }
+
         var parameterValueBasedSelectExpressionOptimizer = relationalCommandCache.Private<ParameterValueBasedSelectExpressionOptimizer>("_parameterValueBasedSelectExpressionOptimizer");
+
+        if (parameterValueBasedSelectExpressionOptimizer == null)
+        {
+            return string.Empty;
+        }
 
         (selectExpression, _) = parameterValueBasedSelectExpressionOptimizer.Optimize(selectExpression, relationalQueryContext.ParameterValues);
 
@@ -59,7 +82,9 @@ public static class SqlExtensions
         var type = value.GetType();
 
         if (type.IsNumeric())
-            return value.ToString();
+        {
+            return value.ToString() ?? string.Empty;
+        }
 
         if (type == typeof(DateTime) || type == typeof(DateTimeOffset))
         {
@@ -76,21 +101,22 @@ public static class SqlExtensions
         return $"'{value}'";
     }
 
-    private static bool IsNullable(this Type type)
-    {
-        return
-            type != null &&
-            type.IsGenericType &&
-            type.GetGenericTypeDefinition() == typeof(Nullable<>);
-    }
+    private static bool IsNullable(this Type? type)
+        => type != null &&
+           type.IsGenericType &&
+           type.GetGenericTypeDefinition() == typeof(Nullable<>);
 
-    private static bool IsNumeric(this Type type)
+    private static bool IsNumeric(this Type? type)
     {
         if (IsNullable(type))
-            type = Nullable.GetUnderlyingType(type);
+        {
+            type = Nullable.GetUnderlyingType(type!);
+        }
 
         if (type == null || type.IsEnum)
+        {
             return false;
+        }
 
         return Type.GetTypeCode(type) switch
         {

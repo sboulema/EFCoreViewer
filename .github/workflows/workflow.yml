@@ -11,7 +11,7 @@ env:
   version: '1.0.${{ github.run_number }}'
   dotnetVersion: '8'
   repoUrl: ${{ github.server_url }}/${{ github.repository }}
-  vsixPath: ${{ github.workspace }}/src/bin/Release/net8.0-windows8.0/EFCoreViewer.vsix
+  vsixPath: ${{ github.workspace }}/src/EFCoreViewer/bin/Release/net8.0-windows8.0/EFCoreViewer.vsix
 
 jobs:
   build:

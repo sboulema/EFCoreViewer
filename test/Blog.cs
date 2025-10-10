@@ -1,9 +1,10 @@
 ﻿namespace EFCoreViewer.Test;
 
-public class Blog
+public record Blog
 {
-    public int BlogId { get; set; }
-    public string Url { get; set; }
+    public int BlogId { get; init; }
 
-    public List<Post> Posts { get; } = new();
+    public string Url { get; init; } = string.Empty;
+
+    public List<Post> Posts { get; } = [];
 }

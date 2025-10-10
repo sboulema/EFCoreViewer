@@ -1,11 +1,14 @@
 ﻿namespace EFCoreViewer.Test;
 
-public class Post
+public record Post
 {
-    public int PostId { get; set; }
-    public string Title { get; set; }
-    public string Content { get; set; }
+    public int PostId { get; init; }
 
-    public int BlogId { get; set; }
-    public Blog Blog { get; set; }
+    public string Title { get; init; } = string.Empty;
+
+    public string Content { get; init; } = string.Empty;
+
+    public int BlogId { get; init; }
+
+    public required Blog Blog { get; init; }
 }
