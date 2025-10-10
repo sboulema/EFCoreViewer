@@ -1,7 +1,9 @@
 version: 2
 updates:
 - package-ecosystem: nuget
-  directory: "/src"
+  directories:
+    - "/src/EFCoreViewer"
+    - "/src/IQueryableObjectSource"
   schedule:
     interval: daily
   assignees:
