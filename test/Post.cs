@@ -11,4 +11,6 @@ public record Post
     public int BlogId { get; init; }
 
     public required Blog Blog { get; init; }
+
+    public required Author Author { get; init; }
 }
