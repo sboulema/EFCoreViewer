@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.DebuggerVisualizers;
+using System;
 using System.IO;
 using System.Linq;
 
@@ -19,9 +20,19 @@ public class EFCoreQueryableObjectSource : VisualizerObjectSource
             return new();
         }
 
-        return new()
+        try
         {
-            SQL = queryable.ToQueryString(),
-        };
+            return new()
+            {
+                SQL = queryable.ToQueryString(),
+            };
+        }
+        catch (Exception e)
+        {
+            return new()
+            {
+                ErrorMessage = e.Message,
+            };
+        }
     }
 }

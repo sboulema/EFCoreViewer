@@ -30,7 +30,9 @@ internal class EFCoreDebuggerVisualizerProvider : DebuggerVisualizerProvider
 
         return new EFCoreViewerUserControl(new()
         {
-            SQL = result.SQL,
+            SQL = !string.IsNullOrEmpty(result.ErrorMessage)
+                ? result.ErrorMessage
+                : result.SQL,
         });
     }
 }
