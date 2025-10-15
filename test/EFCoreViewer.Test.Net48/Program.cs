@@ -26,10 +26,7 @@ namespace EFCoreViewer.Test.Net48
                 IQueryable<Blog> GetBlogs() => db.Blogs.AsQueryable();
 
                 var queryExpression = from b in GetBlogs()
-                                      where b.TypeId != null && blogTypeIds.Contains(b.TypeId) &&
-                                            b.Posts.FirstOrDefault().Author.AuthorId != null &&
-                                            b.Posts.FirstOrDefault().Author.FirstName == "John"
-                                      where b.StatusId == (byte)BlogStatusEnum.LIVE
+                                      where blogTypeIds.Contains(b.TypeId)
                                       select b;
 
                 // How does it handle an untranslatable query?

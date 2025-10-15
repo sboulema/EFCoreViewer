@@ -27,7 +27,7 @@ jobs:
           dotnet-version: ${{ env.dotnetVersion }}.x
 
       - name: Build VSIX
-        run: dotnet publish -p:Version=${{ env.version }}
+        run: dotnet publish src/EFCoreViewer -p:Version=${{ env.version }}
 
       - name: Publish Build Artifacts
         uses: actions/upload-artifact@v4

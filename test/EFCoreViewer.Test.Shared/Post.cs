@@ -11,6 +11,4 @@ public record Post
     public int BlogId { get; set; }
 
     public Blog? Blog { get; set; }
-
-    public Author? Author { get; set; }
 }
