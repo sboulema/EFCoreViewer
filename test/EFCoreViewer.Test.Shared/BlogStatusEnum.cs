@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace EFCoreViewer.Test;
+namespace EFCoreViewer.Test.Shared;
 
 public enum BlogStatusEnum
 {

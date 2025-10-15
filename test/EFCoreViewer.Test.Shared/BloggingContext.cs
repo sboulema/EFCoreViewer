@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace EFCoreViewer.Test;
+namespace EFCoreViewer.Test.Shared;
 
 public class BloggingContext : DbContext
 {
@@ -14,7 +14,7 @@ public class BloggingContext : DbContext
     {
         var folder = Environment.SpecialFolder.LocalApplicationData;
         var path = Environment.GetFolderPath(folder);
-        DbPath = Path.Join(path, "blogging.db");
+        DbPath = Path.Combine(path, "blogging.db");
     }
 
     // The following configures EF to create a Sqlite database file in the

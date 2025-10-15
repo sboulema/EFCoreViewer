@@ -8,8 +8,14 @@ Adds a debug visualizer to easily see the SQL query for an EF Core query
 > Please use the far superior [EFCore.Visualizer](https://marketplace.visualstudio.com/items?itemName=GiorgiDalakishvili.EFCoreVisualizer) when working with **EF Core 7 or newer**. Only use this extension when dealing with **EF Core 3.1.32**.
 
 ## Support
-- Visual Studio 2022
+
+### Visual Studio
+- Visual Studio 2022 17.14
 - Visual Studio 2026
+
+### .NET
+- .NET Framework 4.8+
+- .NET 8.0+
 
 ## ⬇️ Installing
 [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=SamirBoulema.EFCoreViewer) [![Visual Studio Marketplace](https://img.shields.io/vscode-marketplace/v/SamirBoulema.EFCoreViewer.svg?style=flat)](https://marketplace.visualstudio.com/items?itemName=SamirBoulema.EFCoreViewer)

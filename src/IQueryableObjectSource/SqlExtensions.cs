@@ -64,13 +64,13 @@ public static class SqlExtensions
         return SubstituteVariables(command.CommandText, parametersDict);
     }
 
-    private static string SubstituteVariables(string commandText, IReadOnlyDictionary<string, object> parametersDictionary)
+    private static string SubstituteVariables(string commandText, IReadOnlyDictionary<string, object> parameters)
     {
         var sql = commandText;
-        foreach (var (key, value) in parametersDictionary)
+        foreach (var parameter in parameters)
         {
-            var placeHolder = "@" + key;
-            var actualValue = GetActualValue(value);
+            var placeHolder = $"@{parameter.Key}";
+            var actualValue = GetActualValue(parameter.Value);
             sql = sql.Replace(placeHolder, actualValue);
         }
 

@@ -4,6 +4,8 @@
     <Project Path="src/IQueryableObjectSource/IQueryableObjectSource.csproj" />
   </Folder>
   <Folder Name="/test/">
-    <Project Path="test/EFCoreViewer.Test.csproj" />
+    <Project Path="test/EFCoreViewer.Test.Net48/EFCoreViewer.Test.Net48.csproj" Id="0b4a6918-8f6a-4604-b782-3a2d6338e13b" />
+    <Project Path="test/EFCoreViewer.Test.Net8/EFCoreViewer.Test.Net8.csproj" />
+    <Project Path="test/EFCoreViewer.Test.Shared/EFCoreViewer.Test.Shared.csproj" />
   </Folder>
 </Solution>

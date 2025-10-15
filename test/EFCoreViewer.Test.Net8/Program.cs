@@ -1,4 +1,4 @@
-﻿using EFCoreViewer.Test;
+﻿using EFCoreViewer.Test.Shared;
 
 using var db = new BloggingContext();
 

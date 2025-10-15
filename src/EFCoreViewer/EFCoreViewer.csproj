@@ -39,7 +39,7 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<Content Include="..\IQueryableObjectSource\bin\$(Configuration)\net8.0-windows8.0\IQueryableObjectSource.dll" Link="netcoreapp\IQueryableObjectSource.dll" />
+		<Content Include="..\IQueryableObjectSource\bin\$(Configuration)\netstandard2.0\IQueryableObjectSource.dll" Link="netstandard2.0\IQueryableObjectSource.dll" />
 	</ItemGroup>
 
 	<ItemGroup>
