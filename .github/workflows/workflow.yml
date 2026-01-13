@@ -1,4 +1,4 @@
-﻿name: EFCoreViewer
+name: EFCoreViewer
 
 on:
   push:
@@ -30,7 +30,7 @@ jobs:
         run: dotnet publish src/EFCoreViewer -p:Version=${{ env.version }}
 
       - name: Publish Build Artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: EFCoreViewer
           path: |
