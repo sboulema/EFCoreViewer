@@ -5,38 +5,54 @@
               xmlns:colors="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Shell.15.0">
     
     <DataTemplate.Resources>
-        <Style TargetType="TextBox" BasedOn="{StaticResource {x:Static styles:VsResourceKeys.ThemedDialogTextBoxStyleKey}}" />
+        <Style TargetType="TextBox" BasedOn="{StaticResource {x:Static styles:VsResourceKeys.ThemedDialogTextBoxStyleKey}}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsChecked, ElementName=SqlWordWrap}" Value="True">
+                    <Setter Property="TextWrapping" Value="Wrap" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="TabItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Border
+                            BorderThickness="1,1,1,0"
+                            BorderBrush="{DynamicResource {x:Static styles:VsBrushes.FileTabDocumentBorderBackgroundKey}}"
+                            Background="{DynamicResource {x:Static styles:VsBrushes.StartPageTabMouseOverBackgroundBeginKey}}"
+                            CornerRadius="4,4,0,0">
+                            <ContentPresenter x:Name="ContentSite"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                ContentSource="Header"
+                                Margin="10,2"
+                                TextElement.Foreground="{DynamicResource {x:Static styles:VsBrushes.FileTabTextKey}}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style TargetType="Button" BasedOn="{StaticResource {x:Static styles:VsResourceKeys.ThemedDialogButtonStyleKey}}" />
+        <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Static styles:VsResourceKeys.ThemedDialogCheckBoxStyleKey}}" />
     </DataTemplate.Resources>
 
     <TabControl Background="Transparent" BorderThickness="0">
-        <TabItem Header="{Binding Path=TabItemHeaderSQL}">
+        <TabItem Header="{Binding TabItemHeaderSQL}">
             <Grid Margin="0 -2 0 0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <Border BorderThickness="0, 2, 0, 0" BorderBrush="{DynamicResource {x:Static styles:VsBrushes.FileTabHotBorderKey}}">
-                    <Border BorderThickness="1, 0, 1, 1" BorderBrush="{DynamicResource {x:Static styles:VsBrushes.FileTabBorderKey}}">
+                <Border BorderThickness="0, 1, 0, 0" BorderBrush="{DynamicResource {x:Static styles:VsBrushes.FileTabDocumentBorderBackgroundKey}}">
+                    <Border BorderThickness="1, 0, 1, 1" BorderBrush="{DynamicResource {x:Static styles:VsBrushes.FileTabGradientDarkKey}}">
                         <TextBox
-                        x:Name="SqlTextBox"
-                        Text="{Binding Path=SQL}"
-                        HorizontalScrollBarVisibility="Auto"
-                        VerticalScrollBarVisibility="Auto"
-                        FontFamily="'Cascadia Mono', 'Cascadia Code', Consolas, 'Courier New', monospace"
-                        AcceptsReturn="True"
-                        BorderThickness="0">
-                            <TextBox.Style>
-                                <Style TargetType="{x:Type TextBox}">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding IsChecked, ElementName=SqlWordWrap}" Value="True">
-                                            <Setter Property="TextWrapping" Value="Wrap" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBox.Style>
-                        </TextBox>
+                            Text="{Binding SQL}"
+                            HorizontalScrollBarVisibility="Auto"
+                            VerticalScrollBarVisibility="Auto"
+                            FontFamily="'Cascadia Mono', 'Cascadia Code', Consolas, 'Courier New', monospace"
+                            AcceptsReturn="True"
+                            BorderThickness="0" />
                     </Border>
                 </Border>
 
