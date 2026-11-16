@@ -24,6 +24,7 @@ internal class EFCoreViewerExtension : Extension
             Icon = "Resources/Logo_90x90.png",
             PreviewImage = "Resources/Screenshot.png",
             InstallationTargetVersion = "[17.14,19.0)",
+            DotnetTargetVersions = [DotnetTarget.Net8, DotnetTarget.Custom("net10.0")],
         },
     };
 
